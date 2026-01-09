@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Phone, PhoneIncoming, PhoneOff } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 function FakeCallScreen({ onEndCall }: { onEndCall: () => void }) {
   const [timer, setTimer] = useState(0);
@@ -95,6 +96,7 @@ function FakeCallScreen({ onEndCall }: { onEndCall: () => void }) {
 
 export function FakeCallButton() {
   const [isCalling, setIsCalling] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -103,9 +105,10 @@ export function FakeCallButton() {
         variant="outline"
         onClick={() => setIsCalling(true)}
         className={cn('gap-2 font-semibold')}
+        size={isMobile ? 'icon' : 'default'}
       >
         <Phone className="w-4 h-4" />
-        <span className="hidden sm:inline">Fake Call</span>
+        <span className="sm:inline">Fake Call</span>
       </Button>
     </>
   );

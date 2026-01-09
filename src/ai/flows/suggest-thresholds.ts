@@ -59,10 +59,10 @@ const prompt = ai.definePrompt({
   Device Type: {{{deviceType}}}
 
   Provide suggestions for:
-  - accelerometerThreshold: Threshold for accelerometer readings (g force).
-  - gyroscopeThreshold: Threshold for gyroscope readings (degrees per second).
+  - accelerometerThreshold: Threshold for accelerometer readings (g force). A lower value means more sensitivity. For a 'watch', suggest a lower threshold than a 'phone' due to higher sensitivity. For 'sedentary' users, suggest lower thresholds. For 'very active' users, suggest higher thresholds to avoid false positives.
+  - gyroscopeThreshold: Threshold for gyroscope readings (degrees per second). Similar to the accelerometer, suggest lower values for more sensitive devices and less active users.
 
-  Ensure the suggestions are appropriate for the given user characteristics.
+  Ensure the suggestions are appropriate for the given user characteristics. If the device type is not 'phone' or 'watch', provide sensible defaults for a generic device.
 `,
 });
 
